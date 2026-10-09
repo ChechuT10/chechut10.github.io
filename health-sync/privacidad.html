@@ -3,41 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Politica de privacidad - Health Sync</title>
+<title>Política de privacidad de Health Sync</title>
+<meta name="description" content="Política de privacidad de Health Sync, herramienta de uso exclusivamente personal.">
+<link rel="canonical" href="https://chechut10.github.io/health-sync/privacidad.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.15rem; margin-top: 1.6em; }
-  a { color: #1a5fb4; }
+:root { --bg: #F5F7FB; --surface: #FFFFFF; --ink: #10182B; --ink-2: #4A556D; --ink-3: #7C869B; --rule: #DCE2EE; --health: #0E9384; --health-ink: #0A7A6E; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0A0F1E; --surface: #111831; --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052; --health: #2DD4BF; --health-ink: #5EEAD4; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #0A0F1E; --surface: #111831; --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052; --health: #2DD4BF; --health-ink: #5EEAD4; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 "Hanken Grotesk", system-ui, sans-serif; }
+a { color: var(--health-ink); text-underline-offset: 3px; }
+a:hover { color: var(--ink); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+header { padding: 28px 0 0; }
+.back { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); text-decoration: none; font-weight: 500; }
+.back:hover { color: var(--ink); }
+.back svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+h1 { margin: 40px 0 0; font: 800 clamp(2.2rem, 6vw, 3.4rem)/1.02 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -0.035em; }
+.meta { margin: 14px 0 0; color: var(--ink-3); }
+.summary { margin: 32px 0 0; padding: 22px 24px; border-radius: 18px; background: var(--surface); border: 1px solid var(--rule); }
+.summary h2 { margin: 0 0 8px; font-size: 1.05rem; }
+.summary ul { margin: 0; padding-left: 20px; color: var(--ink-2); }
+.summary li + li { margin-top: 4px; }
+section { margin-top: 36px; }
+section h2 { margin: 0 0 8px; font-size: 1.2rem; }
+section p, section li { color: var(--ink-2); }
+section ul { padding-left: 20px; }
+section li + li { margin-top: 4px; }
+footer { margin: 56px 0 0; padding: 24px 0 48px; border-top: 1px solid var(--rule); color: var(--ink-3); font-size: .9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
 </style>
 </head>
 <body>
-<h1>Política de privacidad</h1>
-<p><strong>Aplicación:</strong> Health Sync - Recomposicion Personal<br>
-<strong>Última actualización:</strong> 5 de octubre de 2026</p>
+<div class="wrap">
+  <header>
+    <a class="back" href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Volver a Health Sync</a>
+  </header>
 
-<h2>1. Ámbito</h2>
-<p>Esta aplicación es de uso exclusivamente personal. Su único usuario es su propio desarrollador. No se ofrece al público ni accede a datos de otras personas.</p>
+  <main>
+    <h1>Política de privacidad</h1>
+    <p class="meta">Aplicación: Health Sync. Última actualización: 9 de octubre de 2026.</p>
 
-<h2>2. Datos a los que accede</h2>
-<p>Con autorización expresa mediante OAuth de Google, la aplicación accede a los siguientes datos de la cuenta de Google Health del propietario: actividad (pasos, ejercicios, calorías, zonas de frecuencia cardíaca), sueño, métricas de salud (frecuencia cardíaca, variabilidad de la frecuencia cardíaca, saturación de oxígeno, peso, grasa corporal) y nutrición.</p>
+    <div class="summary">
+      <h2>En resumen</h2>
+      <ul>
+        <li>Es una herramienta de uso exclusivamente personal: su único usuario es quien la desarrolla.</li>
+        <li>Los datos se guardan en un dispositivo propio en su domicilio.</li>
+        <li>No se venden, no se usan para publicidad y no se comparten con terceros.</li>
+      </ul>
+    </div>
 
-<h2>3. Finalidad</h2>
-<p>Los datos se usan únicamente para calcular objetivos nutricionales y generar planes semanales de alimentación y entrenamiento para el propio usuario, y para registrar en su cuenta las comidas y medidas corporales.</p>
+    <section>
+      <h2>1. Responsable y ámbito</h2>
+      <p>Health Sync es una herramienta desarrollada por Jesús Tirado González para su uso personal. No es un servicio público, no admite el registro de otras personas y no accede a datos de nadie más que de su propietario.</p>
+    </section>
 
-<h2>4. Almacenamiento</h2>
-<p>Los datos se guardan en un dispositivo propio situado en el domicilio del usuario. Las copias de seguridad se almacenan cifradas en el almacenamiento personal en la nube del propio usuario.</p>
+    <section>
+      <h2>2. Datos a los que accede</h2>
+      <p>Con autorización expresa mediante OAuth 2.0 de Google, la aplicación accede a los siguientes datos de la cuenta de Google Health del propietario:</p>
+      <ul>
+        <li>Actividad: pasos, distancia, minutos activos, ejercicios, calorías y zonas de frecuencia cardíaca.</li>
+        <li>Sueño: duración y fases.</li>
+        <li>Métricas de salud: frecuencia cardíaca, frecuencia cardíaca en reposo, variabilidad de la frecuencia cardíaca, saturación de oxígeno, frecuencia respiratoria, peso y grasa corporal.</li>
+        <li>Nutrición: registros de comidas e hidratación.</li>
+      </ul>
+      <p>Además, el propietario introduce manualmente su peso, sus medidas corporales, los datos de sus entrenamientos y, de forma ocasional, fotografías de comidas.</p>
+    </section>
 
-<h2>5. Procesamiento con IA</h2>
-<p>Resúmenes agregados de los datos se envían a la API de Gemini de Google, contratada en modalidad de pago, bajo cuyas condiciones los datos no se utilizan para entrenar ni mejorar modelos.</p>
+    <section>
+      <h2>3. Finalidad</h2>
+      <p>Los datos se usan únicamente para calcular objetivos nutricionales, generar planes semanales de alimentación y entrenamiento para el propio usuario, y registrar en su cuenta de Google Health sus comidas, su peso y su composición corporal.</p>
+    </section>
 
-<h2>6. Cesión a terceros</h2>
-<p>Los datos no se venden, no se comparten con terceros y no se usan con fines publicitarios. El uso de la información recibida de las API de Google cumple la <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de datos de usuario de los servicios de las API de Google</a>, incluidos los requisitos de uso limitado.</p>
+    <section>
+      <h2>4. Dónde se almacenan</h2>
+      <ul>
+        <li>En una base de datos local en un dispositivo propio (Raspberry Pi) situado en el domicilio del usuario.</li>
+        <li>Las copias de seguridad se cifran antes de guardarse en el almacenamiento personal en la nube del propio usuario.</li>
+        <li>El registro de entrenamientos se guarda en una hoja de cálculo de Google Sheets de la cuenta personal del usuario, no compartida.</li>
+      </ul>
+    </section>
 
-<h2>7. Revocación y borrado</h2>
-<p>El acceso puede revocarse en cualquier momento desde <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Los datos almacenados localmente pueden borrarse eliminando la base de datos del dispositivo.</p>
+    <section>
+      <h2>5. Servicios externos que intervienen</h2>
+      <ul>
+        <li><strong>API de Gemini (Google):</strong> recibe resúmenes de los datos para redactar el menú y la rutina, y fotografías de comidas para estimar su contenido calórico. Se usa en modalidad de pago, bajo cuyas condiciones los datos no se utilizan para entrenar ni mejorar modelos.</li>
+        <li><strong>Telegram:</strong> el usuario envía a su propio bot el peso, las medidas y fotografías de comidas, y recibe avisos del sistema. Estos mensajes pasan por los servidores de Telegram.</li>
+        <li><strong>Google Sheets:</strong> para el registro de entrenamientos descrito en el punto 4.</li>
+      </ul>
+    </section>
 
-<h2>8. Contacto</h2>
-<p> jesusito1010@gmail.com</p>
+    <section>
+      <h2>6. Uso de los datos de las API de Google</h2>
+      <p>El uso y la transferencia de la información recibida de las API de Google cumplen la <a href="https://developers.google.com/terms/api-services-user-data-policy">Política de datos de usuario de los servicios de las API de Google</a>, incluidos los requisitos de uso limitado. Los datos no se venden, no se transfieren a terceros salvo lo indicado en el punto 5 para prestar la funcionalidad, no se usan para publicidad y no los leen personas distintas del propio usuario.</p>
+    </section>
+
+    <section>
+      <h2>7. Conservación, revocación y borrado</h2>
+      <p>Los datos se conservan mientras el usuario mantenga la herramienta en uso. El acceso a la cuenta de Google puede revocarse en cualquier momento desde <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, y los datos locales se eliminan borrando la base de datos y sus copias de seguridad.</p>
+    </section>
+
+    <section>
+      <h2>8. Cambios y contacto</h2>
+      <p>Esta política se actualizará si cambia el funcionamiento de la herramienta. Para cualquier consulta: <a href="mailto:jesustiradogonzalezz@gmail.com">jesustiradogonzalezz@gmail.com</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Health Sync, un proyecto de Jesús Tirado González.</span>
+    <span><a href="./">Health Sync</a> &nbsp; <a href="../">CV</a></span>
+  </footer>
+</div>
 </body>
 </html>
