@@ -1,0 +1,68 @@
+/* ===================== Tokens comunes (las 3 páginas) ===================== */
+:root {
+  --bg: #F5F7FB;
+  --surface: #FFFFFF;
+  --ink: #10182B;
+  --ink-2: #4A556D;
+  --ink-3: #7C869B;
+  --rule: #DCE2EE;
+  --grid: rgba(16, 24, 43, .05);
+  --shadow: 0 1px 2px rgba(16,24,43,.05), 0 10px 30px rgba(16,24,43,.07);
+  --display: "Bricolage Grotesque", "Hanken Grotesk", system-ui, sans-serif;
+  --text: "Hanken Grotesk", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0F1E; --surface: #111831;
+    --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052;
+    --grid: rgba(255,255,255,.045);
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0F1E; --surface: #111831;
+  --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052;
+  --grid: rgba(255,255,255,.045);
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+/* ===================== Base ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.6;
+  transition: background-color .3s, color .3s;
+  overflow-x: hidden;
+}
+a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--signal, var(--health)); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--signal, var(--health)); color: #fff; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===================== Botón de tema ===================== */
+.icon-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 12px; border-radius: 10px;
+  border: 1px solid var(--rule); background: var(--surface);
+  cursor: pointer; color: var(--ink-2); font-size: .9rem; font-weight: 500;
+}
+.icon-btn:hover { color: var(--ink); border-color: var(--ink-3); }
+.theme-sun { display: none; }
+:root[data-theme="dark"] .theme-sun { display: block; }
+:root[data-theme="dark"] .theme-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-moon { display: none; }
+}
