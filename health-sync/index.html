@@ -248,6 +248,10 @@ button { font: inherit; color: inherit; }
 .road > li { position: relative; padding: 0 0 22px; }
 .road .dot { position: absolute; left: -36px; top: 22px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--rule); }
 .road li.now .dot { border-color: var(--conv); background: var(--conv); }
+.road li.done-phase .dot { border-color: var(--health); background: var(--health); }
+.road li.done-phase .state { background: var(--health-soft); color: var(--health-ink); }
+a.badge.personal { text-decoration: none; }
+a.badge.personal:hover { border-color: var(--ink-3); color: var(--ink); }
 .road .card { padding: 22px 24px; }
 .road-head { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; align-items: baseline; }
 .road h3 { margin: 0; font-family: var(--display); font-size: 1.3rem; letter-spacing: -0.015em; }
@@ -323,6 +327,10 @@ footer a { color: var(--ink-2); }
       <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
     </ul>
     <div class="nav-tools">
+      <a class="pill-btn" href="https://github.com/ChechuT10/health-sync" aria-label="Ver el código en GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        <span class="label">Código</span>
+      </a>
       <a class="pill-btn" href="../" aria-label="Volver al CV de Jesús Tirado">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
         <span class="label">Volver al CV</span>
@@ -341,8 +349,9 @@ footer a { color: var(--ink-2); }
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="status-row fade-in">
-        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción, fase 0 de 4</span>
+        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción, fase 1 de 4</span>
         <span class="badge personal">Proyecto personal de Jesús Tirado</span>
+        <a class="badge personal" href="https://github.com/ChechuT10/health-sync">Código abierto en GitHub, licencia MIT</a>
       </div>
       <h1 class="headline" aria-label="Mis datos de salud, convertidos en un plan semanal.">
         <span class="w" style="--i:0" aria-hidden="true"><span>Mis</span></span>
@@ -355,7 +364,7 @@ footer a { color: var(--ink-2); }
         <span class="w" style="--i:7" aria-hidden="true"><span>plan</span></span>
         <span class="w" style="--i:8" aria-hidden="true"><span>semanal.</span></span>
       </h1>
-      <p class="lede fade-in">Health Sync es un pipeline de datos que corre en una Raspberry Pi en mi casa. Descarga lo que registran mi reloj y mi móvil en Google Health, calcula con reglas seguras cuánto debo comer y cuánto entrenar, y cada domingo me imprime un menú y me prepara la rutina de la semana. Es una herramienta de uso exclusivamente personal y todavía está en construcción.</p>
+      <p class="lede fade-in">Health Sync es un pipeline de datos que corre en una Raspberry Pi en mi casa. Descarga lo que registran mi reloj y mi móvil en Google Health, calcula con reglas seguras cuánto debo comer y cuánto entrenar, y cada domingo me imprime un menú y me prepara la rutina de la semana. Es una herramienta de uso personal, todavía en construcción, y su código es abierto para que cualquiera pueda reutilizarlo.</p>
 
       <figure class="week fade-in" aria-labelledby="week-cap">
         <div class="week-head">
@@ -522,7 +531,7 @@ footer a { color: var(--ink-2); }
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
           <h3>Se queda en casa</h3>
-          <p>La base de datos vive en una Raspberry Pi en mi domicilio. Las copias de seguridad van cifradas a mi propio almacenamiento.</p>
+          <p>La base de datos vive en una Raspberry Pi en mi domicilio. El código es público, pero los datos y las credenciales nunca salen de ella.</p>
         </article>
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
@@ -546,20 +555,22 @@ footer a { color: var(--ink-2); }
         <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance.</p>
       </div>
       <ol class="road" id="road">
-        <li class="now reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 0. Validación</h3><span class="state"><span class="pulse" aria-hidden="true"></span>En curso</span></div>
+        <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
+          <div class="road-head"><h3>Fase 0. Validación</h3><span class="state">Completada</span></div>
           <p>Comprobar que cada pieza crítica funciona antes de construir nada encima.</p>
           <ul class="tasks">
             <li class="done">Acceso a la Google Health API confirmado</li>
             <li class="done">Diagnóstico del intento anterior con Apps Script</li>
             <li class="done">Página del proyecto y política de privacidad publicadas</li>
-            <li>Autorización OAuth permanente</li>
-            <li>Raspberry Pi preparada sin pantalla, con copias de seguridad</li>
-            <li>Primera impresión de prueba en red</li>
+            <li class="done">Autorización OAuth permanente</li>
+            <li class="done">Raspberry Pi preparada sin pantalla y protegida con cortafuegos</li>
+            <li class="done">Primera impresión de prueba en red</li>
+            <li class="done">Descarga de los 33 tipos de dato de la API, sin errores</li>
+            <li class="done">Código publicado en GitHub</li>
           </ul>
         </div></li>
-        <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 1. Producto mínimo</h3><span class="state">Pendiente</span></div>
+        <li class="now reveal"><span class="dot" aria-hidden="true"></span><div class="card">
+          <div class="road-head"><h3>Fase 1. Producto mínimo</h3><span class="state"><span class="pulse" aria-hidden="true"></span>En curso</span></div>
           <p>Carga histórica e incremental a SQLite, bot de Telegram para el peso, cálculo de calorías con todos los límites, menú generado y validado, PDF impreso cada domingo y avisos si algo falla.</p>
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
@@ -572,7 +583,7 @@ footer a { color: var(--ink-2); }
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
           <div class="road-head"><h3>Fase 4. Robustez</h3><span class="state">Pendiente</span></div>
-          <p>Pruebas de restauración de copias, gráficas de tendencia en el PDF, pausas de dieta y semanas de descarga automáticas, y revisión trimestral de las reglas.</p>
+          <p>Guía de reinstalación probada, gráficas de tendencia en el PDF, pausas de dieta y semanas de descarga automáticas, y revisión trimestral de las reglas.</p>
         </div></li>
       </ol>
     </div>
@@ -602,7 +613,7 @@ footer a { color: var(--ink-2); }
 <footer>
   <div class="wrap">
     <span>Health Sync, un proyecto de Jesús Tirado González.</span>
-    <nav aria-label="Enlaces del pie"><a href="../">CV</a><a href="privacidad.html">Política de privacidad</a></nav>
+    <nav aria-label="Enlaces del pie"><a href="../">CV</a><a href="https://github.com/ChechuT10/health-sync">Código en GitHub</a><a href="privacidad.html">Política de privacidad</a></nav>
   </div>
 </footer>
 
