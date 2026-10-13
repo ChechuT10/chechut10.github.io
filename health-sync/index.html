@@ -476,10 +476,10 @@ footer a { color: var(--ink-2); }
           <h3>Límites fijos</h3>
           <p>Están pensados para evitar el error más habitual al perder grasa: un déficit demasiado agresivo.</p>
           <ul class="rules">
-            <li><b>Suelo calórico:</b> nunca por debajo del metabolismo basal estimado, y un déficit máximo del 25 % del gasto.</li>
+            <li><b>Suelo calórico adaptativo:</b> nunca por debajo del metabolismo basal estimado con mi peso de cada momento (y nunca menos de 1.800 kcal), con un déficit máximo del 25 % del gasto real.</li>
             <li><b>Velocidad:</b> si la pérdida de peso es demasiado rápida dos semanas seguidas, las calorías suben.</li>
-            <li><b>Tendencia, no pesajes sueltos:</b> los ajustes se basan en la media móvil del peso.</li>
-            <li><b>Pausas programadas:</b> cada 10 a 12 semanas, una o dos semanas en mantenimiento.</li>
+            <li><b>Tendencia, no pesajes sueltos:</b> los ajustes usan la tendencia de 3-4 semanas de pesajes, aunque no sean regulares, y no se toca nada hasta tener al menos tres.</li>
+            <li><b>Pausas programadas:</b> cada 12 semanas, una o dos semanas en mantenimiento.</li>
             <li><b>Ejercicios vetados:</b> la rutina respeta las limitaciones de lesiones que le indico.</li>
           </ul>
         </div>
@@ -498,22 +498,23 @@ footer a { color: var(--ink-2); }
     <div class="wrap">
       <div class="section-head reveal">
         <h2 class="big">Qué datos usa</h2>
-        <p class="section-intro">La mayoría llegan solos desde el reloj y el móvil. Solo hay dos cosas que anoto a mano: las medidas del domingo y lo que levanto en el gimnasio.</p>
+        <p class="section-intro">La mayoría llegan solos desde el reloj y el móvil. Solo hay dos cosas que anoto a mano: el peso y las medidas, y lo que levanto en el gimnasio.</p>
       </div>
       <div class="data-grid">
         <article class="datum reveal"><h3>Sueño</h3><p>Duración y fases de cada noche, para medir la recuperación.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>HRV y pulso en reposo</h3><p>Comparados con mi propia media de 60 días, no con valores genéricos.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Pasos y actividad</h3><p>El móvil va siempre conmigo, así que este dato nunca falta.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Entrenamientos</h3><p>Duración y frecuencia cardíaca de cada sesión registrada en el reloj.</p><span class="src auto">Automático</span></article>
-        <article class="datum reveal"><h3>Peso y medidas</h3><p>Pesaje semanal y medidas para estimar la grasa con el método de la Marina de EE. UU.</p><span class="src manual">Bot de Telegram</span></article>
+        <article class="datum reveal"><h3>Peso y medidas</h3><p>Con /peso y /medidas en el bot. El % de grasa sale del método de la Marina de EE. UU. y se guarda también en Google Health.</p><span class="src manual">Bot de Telegram</span></article>
         <article class="datum reveal"><h3>Series y cargas</h3><p>Kilos, repeticiones y esfuerzo de cada serie, que alimentan la sobrecarga progresiva.</p><span class="src manual">Google Sheets</span></article>
         <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot; se estima un rango de calorías y sustituye a la comida planificada.</p><span class="src manual">Bot de Telegram</span></article>
         <article class="datum reveal"><h3>Comidas del plan</h3><p>Se escriben solas en Google Health cada noche, sin meterlas a mano.</p><span class="src auto">Automático</span></article>
       </div>
       <div class="card coverage reveal">
         <h3>Diseñado para días incompletos</h3>
-        <p>No siempre llevo el reloj. El sistema clasifica cada día según lo que tiene y usa cada dato solo cuando es fiable. Si faltan noches, pregunta por Telegram cómo he dormido.</p>
-        <div class="cov-row"><div class="cells" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div><span><b>Día completo.</b> Se usa todo.</span></div>
+        <p>No siempre llevo el reloj. El sistema clasifica cada día según la parte del día en que el reloj registró pulso, y usa cada dato solo cuando es fiable. Un dato que falta se guarda vacío, nunca como cero.</p>
+        <div class="cov-row"><div class="cells" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div><span><b>Día completo.</b> Noche registrada y reloj al menos medio día. Se usa todo.</span></div>
+        <div class="cov-row"><div class="cells" aria-hidden="true"><i class="f"></i><i class="p"></i><i></i><i></i></div><span><b>Solo noche.</b> El reloj solo para dormir: sueño y recuperación sí; la actividad sale del móvil.</span></div>
         <div class="cov-row"><div class="cells" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="p"></i><i></i></div><span><b>Sin noche.</b> Actividad sí; sueño, HRV y pulso en reposo quedan vacíos.</span></div>
         <div class="cov-row"><div class="cells" aria-hidden="true"><i class="f"></i><i></i><i></i><i></i></div><span><b>Solo móvil.</b> Se usan los pasos y nada más.</span></div>
       </div>
@@ -552,7 +553,7 @@ footer a { color: var(--ink-2); }
     <div class="wrap">
       <div class="section-head reveal">
         <h2 class="big">Hoja de ruta</h2>
-        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance.</p>
+        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance (última actualización: 13 de octubre de 2026).</p>
       </div>
       <ol class="road" id="road">
         <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
@@ -571,7 +572,17 @@ footer a { color: var(--ink-2); }
         </div></li>
         <li class="now reveal"><span class="dot" aria-hidden="true"></span><div class="card">
           <div class="road-head"><h3>Fase 1. Producto mínimo</h3><span class="state"><span class="pulse" aria-hidden="true"></span>En curso</span></div>
-          <p>Carga histórica e incremental a SQLite, bot de Telegram para el peso, cálculo de calorías con todos los límites, menú generado y validado, PDF impreso cada domingo y avisos si algo falla.</p>
+          <p>Que el ciclo semanal funcione de punta a punta: datos, peso, calorías, menú e impresión.</p>
+          <ul class="tasks">
+            <li class="done">Base de datos SQLite: cada dato de la API en bruto, sin duplicados, y tablas limpias por día, noche y entrenamiento</li>
+            <li class="done">Sincronización automática cada 4 horas, releyendo los últimos 3 días</li>
+            <li class="done">Avisos por Telegram si una sincronización falla</li>
+            <li class="done">Bot de Telegram: peso, medidas y % de grasa, con los comandos en el menú</li>
+            <li class="done">Recordatorio de pesaje que se adapta a cuándo puedo pesarme</li>
+            <li>Cálculo de calorías y macros con todos los límites</li>
+            <li>Menú semanal generado por la IA y validado</li>
+            <li>PDF con el menú impreso cada domingo</li>
+          </ul>
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
           <div class="road-head"><h3>Fase 2. Bucle de entrenamiento</h3><span class="state">Pendiente</span></div>
