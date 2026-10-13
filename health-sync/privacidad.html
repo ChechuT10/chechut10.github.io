@@ -10,33 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
-<style>
-:root { --bg: #F5F7FB; --surface: #FFFFFF; --ink: #10182B; --ink-2: #4A556D; --ink-3: #7C869B; --rule: #DCE2EE; --health: #0E9384; --health-ink: #0A7A6E; color-scheme: light; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0A0F1E; --surface: #111831; --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052; --health: #2DD4BF; --health-ink: #5EEAD4; color-scheme: dark; } }
-:root[data-theme="dark"] { --bg: #0A0F1E; --surface: #111831; --ink: #E9EEF8; --ink-2: #AAB4CA; --ink-3: #737E98; --rule: #243052; --health: #2DD4BF; --health-ink: #5EEAD4; color-scheme: dark; }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 "Hanken Grotesk", system-ui, sans-serif; }
-a { color: var(--health-ink); text-underline-offset: 3px; }
-a:hover { color: var(--ink); }
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
-header { padding: 28px 0 0; }
-.back { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); text-decoration: none; font-weight: 500; }
-.back:hover { color: var(--ink); }
-.back svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-h1 { margin: 40px 0 0; font: 800 clamp(2.2rem, 6vw, 3.4rem)/1.02 "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -0.035em; }
-.meta { margin: 14px 0 0; color: var(--ink-3); }
-.summary { margin: 32px 0 0; padding: 22px 24px; border-radius: 18px; background: var(--surface); border: 1px solid var(--rule); }
-.summary h2 { margin: 0 0 8px; font-size: 1.05rem; }
-.summary ul { margin: 0; padding-left: 20px; color: var(--ink-2); }
-.summary li + li { margin-top: 4px; }
-section { margin-top: 36px; }
-section h2 { margin: 0 0 8px; font-size: 1.2rem; }
-section p, section li { color: var(--ink-2); }
-section ul { padding-left: 20px; }
-section li + li { margin-top: 4px; }
-footer { margin: 56px 0 0; padding: 24px 0 48px; border-top: 1px solid var(--rule); color: var(--ink-3); font-size: .9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
-</style>
 </head>
+<link rel="stylesheet" href="../css/comun.css">
+<link rel="stylesheet" href="css/privacidad.css">
+
 <body>
 <div class="wrap">
   <header>

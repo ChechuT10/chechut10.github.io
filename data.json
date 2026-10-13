@@ -1,0 +1,149 @@
+{
+  "nombre": "Jesús Tirado González",
+  "iniciales": "JT",
+  "puesto": "Data Analyst y especialista en AdOps",
+  "ubicacion": "Humanes de Madrid, Madrid",
+  "carreraDesde": "2021-07",
+  "resumen": "Soy Data Analyst en Madrid y llevo más de {años} años midiendo campañas digitales de principio a fin: implemento el tracking, configuro la atribución, modelo los datos en BigQuery con dbt y los convierto en cuadros de mando que ayudan a decidir dónde invertir.",
+  "contacto": {
+    "email": "jesustiradogonzalezz@gmail.com",
+    "telefono": "+34 609 979 784",
+    "linkedin": "https://www.linkedin.com/in/jesustiradogonzalez"
+  },
+  "experiencia": [
+    {
+      "id": "magnus",
+      "puesto": "Data Analyst Senior",
+      "empresa": "Magnus Strategy Group",
+      "corto": "Magnus",
+      "cliente": "Orange",
+      "lugar": "Pozuelo de Alarcón",
+      "inicio": "2025-10",
+      "fin": null,
+      "logros": [
+        "Análisis de datos de las estrategias digitales de Orange para orientar decisiones de inversión y optimización.",
+        "Tratamiento y gestión de bases de datos para obtener métricas fiables y conclusiones accionables."
+      ],
+      "herramientas": ["Análisis de datos", "Bases de datos"]
+    },
+    {
+      "id": "hmg",
+      "puesto": "AdOps Specialist",
+      "empresa": "HMG",
+      "corto": "HMG",
+      "lugar": "Madrid",
+      "inicio": "2022-12",
+      "fin": "2025-10",
+      "logros": [
+        "Configuración y gestión del modelo de atribución en Campaign Manager 360 y Adform.",
+        "Modelado y transformación de datos en BigQuery con dbt, consolidando fuentes para análisis y reporting.",
+        "Implementación de píxeles de seguimiento en Google Ads, DV360 y Meta, y redacción de guías de implementación.",
+        "Traficado de campañas y banners, y creación de dashboards de seguimiento."
+      ],
+      "herramientas": ["BigQuery", "dbt", "Campaign Manager 360", "Adform", "DV360", "Google Ads", "Meta Ads", "Análisis de datos"]
+    },
+    {
+      "id": "neural",
+      "puesto": "AdTech Specialist",
+      "empresa": "Neural.ONE",
+      "corto": "Neural.ONE",
+      "lugar": "Alcobendas",
+      "inicio": "2021-07",
+      "fin": "2022-12",
+      "logros": [
+        "Desarrollo de creatividades dinámicas (DCO) y banners HTML5.",
+        "Configuración de un modelo de atribución a medida para cliente e implementación de píxeles de seguimiento.",
+        "Traficado de campañas, desarrollo web, gestión de almacenamiento en AWS S3 y análisis de datos."
+      ],
+      "herramientas": ["DCO", "HTML5", "AWS S3", "DV360", "Google Ads", "Meta Ads", "Análisis de datos"]
+    },
+    {
+      "id": "bouge",
+      "anterior": true,
+      "practicas": true,
+      "puesto": "Frontend Web Developer (prácticas)",
+      "empresa": "Bouge S.A.",
+      "corto": "Bouge",
+      "lugar": "Villaviciosa de Odón",
+      "inicio": "2021-04",
+      "fin": "2021-06",
+      "logros": ["Webs en WordPress y herramientas a medida."],
+      "herramientas": ["WordPress"]
+    },
+    {
+      "id": "tirhuma",
+      "anterior": true,
+      "puesto": "Administrador de sistemas",
+      "empresa": "Transportes y Mudanzas Tirhuma",
+      "corto": "Sistemas",
+      "lugar": "Humanes de Madrid",
+      "inicio": "2019-12",
+      "fin": "2021-01",
+      "logros": ["Administración de bases de datos, soporte a usuarios, mantenimiento de equipos y de la web."],
+      "herramientas": ["Bases de datos"]
+    },
+    {
+      "id": "ait",
+      "anterior": true,
+      "practicas": true,
+      "puesto": "Diseño web (prácticas)",
+      "empresa": "AIT Consulting",
+      "corto": "AIT",
+      "lugar": "Fuenlabrada",
+      "inicio": "2019-03",
+      "fin": "2019-06",
+      "logros": ["Webs en WordPress, Joomla y PrestaShop."],
+      "herramientas": ["WordPress"]
+    }
+  ],
+  "formacion": [
+    {
+      "id": "master",
+      "titulo": "Máster en Inteligencia Artificial y Data Science",
+      "corto": "Máster",
+      "centro": "Universidad Internacional de La Rioja (UNIR)",
+      "inicio": "2024-04",
+      "fin": "2025-01"
+    },
+    {
+      "id": "daw",
+      "titulo": "Técnico Superior en Desarrollo de Aplicaciones Web",
+      "corto": "DAW",
+      "centro": "IES Gaspar Melchor de Jovellanos",
+      "inicio": "2019-09",
+      "fin": "2021-06"
+    },
+    {
+      "id": "smr",
+      "titulo": "Técnico en Sistemas Microinformáticos y Redes",
+      "corto": "SMR",
+      "centro": "IES Luis Vives",
+      "inicio": "2016-09",
+      "fin": "2018-07"
+    }
+  ],
+  "stack": [
+    { "grupo": "Datos y cloud", "items": ["BigQuery", "dbt", "SQL y PL/SQL", "Bases de datos", "Google Cloud", "AWS S3"] },
+    { "grupo": "AdTech y medición", "items": ["Campaign Manager 360", "Adform", "DV360", "Google Ads", "Meta Ads", "DCO"] },
+    { "grupo": "Tracking y analítica", "items": ["Google Tag Manager", "GA4", "Análisis de datos"] },
+    { "grupo": "Visualización", "items": ["Looker Studio", "Power BI"] },
+    { "grupo": "IA y machine learning", "items": ["Vertex AI", "TensorFlow", "API de Gemini"] },
+    { "grupo": "Desarrollo", "items": ["Python", "JavaScript", "Google Apps Script", "HTML5", "CSS", "JSON", "WordPress", "Linux y Raspberry Pi"] }
+  ],
+  "proyectos": [
+    {
+      "id": "healthsync",
+      "nombre": "Health Sync",
+      "estado": "En desarrollo",
+      "descripcion": "Pipeline de datos personales que corre en una Raspberry Pi. Sincroniza mi actividad, sueño y composición corporal desde la Google Health API, lo guarda en SQLite y usa la API de Gemini para proponer cada semana un menú y una rutina de entrenamiento. Las calorías y la progresión las calcula código determinista con límites de seguridad; la IA solo redacta, y un validador revisa su respuesta.",
+      "herramientas": ["Python", "Google Health API", "OAuth 2.0", "SQLite", "systemd", "API de Gemini", "Raspberry Pi", "Telegram"],
+      "url": "health-sync/",
+      "repo": "https://github.com/ChechuT10/health-sync"
+    }
+  ],
+  "certificaciones": ["Ad Server Certified", "Account Operations Certified"],
+  "idiomas": [
+    { "idioma": "Español", "nivel": "Nativo" },
+    { "idioma": "Inglés", "nivel": "Intermedio" }
+  ]
+}
