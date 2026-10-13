@@ -163,7 +163,7 @@
     { "grupo": "Tracking y analítica", "items": ["Google Tag Manager", "GA4", "Análisis de datos"] },
     { "grupo": "Visualización", "items": ["Looker Studio", "Power BI"] },
     { "grupo": "IA y machine learning", "items": ["Vertex AI", "TensorFlow", "API de Gemini"] },
-    { "grupo": "Desarrollo", "items": ["JavaScript", "Google Apps Script", "HTML5", "CSS", "JSON", "WordPress"] }
+    { "grupo": "Desarrollo", "items": ["Python", "JavaScript", "Google Apps Script", "HTML5", "CSS", "JSON", "WordPress", "Linux y Raspberry Pi"] }
   ],
   "proyectos": [
     {
@@ -171,8 +171,9 @@
       "nombre": "Health Sync",
       "estado": "En desarrollo",
       "descripcion": "Pipeline de datos personales que corre en una Raspberry Pi. Sincroniza mi actividad, sueño y composición corporal desde la Google Health API, lo guarda en SQLite y usa la API de Gemini para proponer cada semana un menú y una rutina de entrenamiento. Las calorías y la progresión las calcula código determinista con límites de seguridad; la IA solo redacta, y un validador revisa su respuesta.",
-      "herramientas": ["Google Health API", "OAuth 2.0", "SQLite", "API de Gemini", "Raspberry Pi", "Telegram"],
-      "url": "health-sync/"
+      "herramientas": ["Python", "Google Health API", "OAuth 2.0", "SQLite", "API de Gemini", "Raspberry Pi", "Telegram"],
+      "url": "health-sync/",
+      "repo": "https://github.com/ChechuT10/health-sync"
     }
   ],
   "certificaciones": ["Ad Server Certified", "Account Operations Certified"],
@@ -563,6 +564,7 @@ kbd {
 .project-text h3 { margin: 0; font-family: var(--display); font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
 .status { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--edu); font-weight: 600; font-size: .9rem; }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--edu); }
+.project-links { display: flex; flex-wrap: wrap; gap: 10px; }
 .project-text p { grid-column: 1 / -1; margin: 0; max-width: 72ch; color: var(--ink-2); }
 .project-text .tags { grid-column: 1 / -1; margin-top: 4px; }
 .diagram-scroll { overflow-x: auto; padding: 16px 24px 28px; }
@@ -1240,7 +1242,7 @@ dialog::backdrop { background: rgba(8, 12, 24, .45); backdrop-filter: blur(3px);
     const p = data.proyectos[0];
     $('#project-text').innerHTML = `
       <div><h3>${esc(p.nombre)}</h3><span class="status">${esc(p.estado)}</span></div>
-      <a class="btn" href="${esc(p.url)}">Ver la página del proyecto</a>
+      <div class="project-links"><a class="btn" href="${esc(p.url)}">Ver la página del proyecto</a>${p.repo ? `<a class="btn" href="${esc(p.repo)}">Código en GitHub</a>` : ''}</div>
       <p>${esc(p.descripcion)}</p>
       <ul class="tags">${p.herramientas.map(h => `<li>${esc(h)}</li>`).join('')}</ul>`;
     $('#edu').innerHTML = data.formacion.map(f => `
