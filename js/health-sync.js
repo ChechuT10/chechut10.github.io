@@ -29,10 +29,10 @@
     const pad = n => String(n).padStart(2, '0');
     const add = (h, kind, y, r, msg) => events.push({ h, kind, y, r, msg });
     for (let h = 4; h < 168; h += 4) add(h, 'sync', Y, 3.5, 'sincroniza actividad, sueño y frecuencia cardíaca');
-    [0, 1, 3, 4].forEach(d => add(d * 24 + 18.5, 'gym', Y - 30, 7, 'entrenamiento detectado; esperando las series de la hoja'));
+    [0, 1, 3, 4].forEach(d => add(d * 24 + 18.5, 'gym', Y - 30, 7, 'entrenamiento; las series de la hoja ajustan los kilos de la próxima vez'));
     for (let d = 0; d < 7; d++) add(d * 24 + 23, 'meal', Y + 30, 5, 'escribe las comidas del día en Google Health');
-    add(6 * 24 + 9, 'weigh', Y - 30, 7, 'peso y medidas recibidos por Telegram');
-    add(6 * 24 + 20, 'plan', Y + 30, 9, 'calcula objetivos, la IA redacta, el validador aprueba e imprime el menú');
+    add(6, 'weigh', Y - 30, 7, 'peso y medidas recibidos por Telegram');
+    add(10, 'plan', Y + 30, 9, 'calcula calorías y kilos; la IA monta el menú, la Pi lo revisa y lo imprime');
     events.sort((a, b) => a.h - b.h);
     events.forEach(e => { e.node = mk('circle', { class: `ev ${e.kind} dim`, cx: xAt(e.h), cy: e.y, r: e.r }); });
     const head = mk('line', { class: 'playhead', x1: X0, x2: X0, y1: 30, y2: 136 });
@@ -79,10 +79,10 @@
     const pre = $('#console-json'), checks = $('#checks'), verdict = $('#verdict');
     const scenarios = [
       { json: { dia: 'lunes', kcal: 2215, proteina_g: 172, ejercicios: ['press inclinado', 'remo con apoyo'] },
-        res: [['esquema JSON válido', 1], ['kcal dentro de ±3 % del objetivo', 1], ['proteína por encima del mínimo', 1], ['ejercicios permitidos', 1]],
+        res: [['esquema JSON válido', 1], ['kcal del día dentro de ±5 %', 1], ['proteína por encima del mínimo', 1], ['ejercicios permitidos (rodilla ≤ 90°)', 1]],
         ok: true, verdict: '✓ plan aprobado' },
       { json: { dia: 'martes', kcal: 1640, proteina_g: 120, ejercicios: ['sentadilla profunda'] },
-        res: [['esquema JSON válido', 1], ['kcal dentro de ±3 % del objetivo', 0], ['proteína por encima del mínimo', 0], ['ejercicios permitidos', 0]],
+        res: [['esquema JSON válido', 1], ['kcal del día dentro de ±5 %', 0], ['proteína por encima del mínimo', 0], ['ejercicios permitidos (rodilla ≤ 90°)', 0]],
         ok: false, verdict: '✗ rechazado: se pide a la IA que lo corrija' }
     ];
     const hl = obj => JSON.stringify(obj, null, 2)

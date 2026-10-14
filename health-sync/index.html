@@ -61,7 +61,7 @@
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="status-row fade-in">
-        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción, fase 1 de 4</span>
+        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción: fases 0 a 2 listas, la 3 en camino</span>
         <span class="badge personal">Proyecto personal de Jesús Tirado</span>
         <a class="badge personal" href="https://github.com/ChechuT10/health-sync">Código abierto en GitHub, licencia MIT</a>
       </div>
@@ -76,7 +76,7 @@
         <span class="w" style="--i:7" aria-hidden="true"><span>plan</span></span>
         <span class="w" style="--i:8" aria-hidden="true"><span>semanal.</span></span>
       </h1>
-      <p class="lede fade-in">Health Sync es un pipeline de datos que corre en una Raspberry Pi en mi casa. Descarga lo que registran mi reloj y mi móvil en Google Health, calcula con reglas seguras cuánto debo comer y cuánto entrenar, y cada domingo me imprime un menú y me prepara la rutina de la semana. Es una herramienta de uso personal, todavía en construcción, y su código es abierto para que cualquiera pueda reutilizarlo.</p>
+      <p class="lede fade-in">Health Sync es un pipeline de datos que corre en una Raspberry Pi en mi casa. Descarga lo que registran mi reloj y mi móvil en Google Health, calcula con reglas seguras cuánto debo comer y cuánto entrenar, y cada lunes me imprime el menú de martes a lunes, con la lista de la compra, y me prepara en una hoja de Google la rutina del gimnasio. Es una herramienta de uso personal, todavía en construcción, y su código es abierto para que cualquiera pueda reutilizarlo.</p>
 
       <figure class="week fade-in" aria-labelledby="week-cap">
         <div class="week-head">
@@ -135,15 +135,15 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2 class="big">Cómo funciona</h2>
-        <p class="section-intro">Seis pasos, de los datos en bruto a un papel en la nevera. Los números los pone el código; la IA solo pone las palabras.</p>
+        <p class="section-intro">Seis pasos, de los datos en bruto a un papel en la nevera. Los objetivos los pone el código; la IA propone el menú y los cambios de rutina, y el código lo revisa todo antes de usarlo.</p>
       </div>
       <ol class="steps">
         <li class="reveal"><h3>Ingesta</h3><p>Cada 4 horas descarga de la Google Health API pasos, sueño con fases, frecuencia cardíaca, HRV, SpO2, entrenamientos y peso. Sin duplicados y respetando los límites de la API.</p><span class="where">Raspberry Pi</span></li>
         <li class="reveal"><h3>Normalización</h3><p>Guarda el dato en bruto y una versión limpia por día en SQLite. Distingue días completos, días sin reloj por la noche y días con solo el móvil.</p><span class="where">Raspberry Pi, SQLite</span></li>
-        <li class="reveal det"><h3>Cálculo determinista</h3><p>Calcula el gasto real a partir de la tendencia del peso y lo que como, fija calorías y macros, y decide la progresión de cargas según el sueño y la HRV.</p><span class="where">Código con límites fijos</span></li>
-        <li class="reveal ai"><h3>La IA redacta</h3><p>Con esos números ya cerrados, la API de Gemini propone un menú semanal y una rutina concreta, siempre en un formato JSON estricto.</p><span class="where">API de Gemini</span></li>
-        <li class="reveal det"><h3>Validación</h3><p>Un validador comprueba calorías, proteína, ejercicios permitidos y formato. Si falla dos veces, se repite el plan de la semana anterior y me avisa.</p><span class="where">Código con límites fijos</span></li>
-        <li class="reveal"><h3>Entrega</h3><p>El domingo imprime el menú con cantidades en gramos, vuelca la rutina a una hoja para anotar en el gimnasio y cada noche registra las comidas en Google Health.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
+        <li class="reveal det"><h3>Cálculo determinista</h3><p>Calcula el gasto real a partir de la tendencia del peso y lo que como, fija calorías y macros, y decide los kilos de cada ejercicio con doble progresión según lo que levanté, el sueño y la HRV.</p><span class="where">Código con límites fijos</span></li>
+        <li class="reveal ai"><h3>La IA propone</h3><p>Con esos números ya cerrados, Gemini busca productos de temporada en mis supermercados y monta el menú de la semana en un JSON estricto. Cada 12 semanas, o si me estanco, propone qué ejercicios cambiar.</p><span class="where">API de Gemini</span></li>
+        <li class="reveal det"><h3>Validación</h3><p>La Pi suma gramo a gramo cada día del menú (±5 %), comprueba que no aparece nada que no como y que cada ejercicio respeta mis lesiones y los 60 minutos. Si algo falla, le devuelve los errores a la IA para que corrija; si sigue mal, repite el plan anterior y me avisa.</p><span class="where">Código con límites fijos</span></li>
+        <li class="reveal"><h3>Entrega</h3><p>El lunes imprime el menú con gramos y la lista de la compra, crea la pestaña de la semana en Google Sheets para anotar las series y lo manda todo por Telegram. Pronto, cada noche registrará las comidas en Google Health.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
       </ol>
 
       <div class="card diagram-card reveal">
@@ -165,9 +165,9 @@
             <g class="node"><rect x="20" y="133" width="160" height="64" rx="14"/><text class="t" x="38" y="160">Pixel Watch y móvil</text><text class="s" x="38" y="180">Actividad, sueño, HRV</text></g>
             <g class="node"><rect x="230" y="133" width="180" height="64" rx="14"/><text class="t" x="248" y="160">Google Health API</text><text class="s" x="248" y="180">Lee datos, escribe comidas</text></g>
             <g class="node hub"><rect x="470" y="124" width="200" height="86" rx="16"/><text class="t" x="490" y="156">Raspberry Pi</text><text class="s" x="490" y="176">SQLite, reglas y</text><text class="s" x="490" y="192">tareas programadas</text></g>
-            <g class="node ai"><rect x="470" y="10" width="200" height="64" rx="14"/><text class="t" x="490" y="37">API de Gemini</text><text class="s" x="490" y="57">Redacta menú y rutina</text></g>
+            <g class="node ai"><rect x="470" y="10" width="200" height="64" rx="14"/><text class="t" x="490" y="37">API de Gemini</text><text class="s" x="490" y="57">Menú, compra y rutina</text></g>
             <g class="node"><rect x="730" y="28" width="210" height="64" rx="14"/><text class="t" x="748" y="55">Impresora</text><text class="s" x="748" y="75">Menú semanal en PDF</text></g>
-            <g class="node"><rect x="730" y="137" width="210" height="64" rx="14"/><text class="t" x="748" y="164">Bot de Telegram</text><text class="s" x="748" y="184">Peso, medidas y fotos</text></g>
+            <g class="node"><rect x="730" y="137" width="210" height="64" rx="14"/><text class="t" x="748" y="164">Bot de Telegram</text><text class="s" x="748" y="184">Peso, menú del día y avisos</text></g>
             <g class="node"><rect x="730" y="246" width="210" height="64" rx="14"/><text class="t" x="748" y="273">Google Sheets</text><text class="s" x="748" y="293">Series, kilos y repeticiones</text></g>
           </svg>
         </div>
@@ -180,8 +180,8 @@
   <section class="section" id="seguridad">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 class="big">La IA no decide los números</h2>
-        <p class="section-intro">Un modelo de lenguaje es bueno escribiendo menús y malo sumando. Por eso las calorías y las cargas salen de código con límites que ni la IA ni yo podemos saltarnos, y todo lo que propone la IA pasa por un validador.</p>
+        <h2 class="big">La IA no tiene la última palabra</h2>
+        <p class="section-intro">Un modelo de lenguaje es bueno proponiendo menús y malo sumando. Por eso las calorías y las cargas salen de código con límites que ni la IA ni yo podemos saltarnos, y todo lo que propone la IA lo revisa la Raspberry Pi antes de usarlo.</p>
       </div>
       <div class="guard">
         <div class="card reveal">
@@ -191,8 +191,9 @@
             <li><b>Suelo calórico adaptativo:</b> nunca por debajo del metabolismo basal estimado con mi peso de cada momento (y nunca menos de 1.800 kcal), con un déficit máximo del 25 % del gasto real.</li>
             <li><b>Velocidad:</b> si la pérdida de peso es demasiado rápida dos semanas seguidas, las calorías suben.</li>
             <li><b>Tendencia, no pesajes sueltos:</b> los ajustes usan la tendencia de 3-4 semanas de pesajes, aunque no sean regulares, y no se toca nada hasta tener al menos tres.</li>
-            <li><b>Pausas programadas:</b> cada 12 semanas, una o dos semanas en mantenimiento.</li>
-            <li><b>Ejercicios vetados:</b> la rutina respeta las limitaciones de lesiones que le indico.</li>
+            <li><b>Pausas programadas:</b> cada 12 semanas, dos semanas en mantenimiento.</li>
+            <li><b>Menú revisado gramo a gramo:</b> cada día tiene que cuadrar con el objetivo, y la IA no puede colar nada que yo no coma.</li>
+            <li><b>Ejercicios vetados:</b> con la rodilla operada, nunca más de 90° de flexión con carga; nada que sobrecargue el hombro, y sesiones de 60 minutos como máximo.</li>
           </ul>
         </div>
         <div class="card console reveal" id="console">
@@ -219,8 +220,8 @@
         <article class="datum reveal"><h3>Entrenamientos</h3><p>Duración y frecuencia cardíaca de cada sesión registrada en el reloj.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Peso y medidas</h3><p>Con /peso y /medidas en el bot. El % de grasa sale del método de la Marina de EE. UU. y se guarda también en Google Health.</p><span class="src manual">Bot de Telegram</span></article>
         <article class="datum reveal"><h3>Series y cargas</h3><p>Kilos, repeticiones y esfuerzo de cada serie, que alimentan la sobrecarga progresiva.</p><span class="src manual">Google Sheets</span></article>
-        <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot; se estima un rango de calorías y sustituye a la comida planificada.</p><span class="src manual">Bot de Telegram</span></article>
-        <article class="datum reveal"><h3>Comidas del plan</h3><p>Se escriben solas en Google Health cada noche, sin meterlas a mano.</p><span class="src auto">Automático</span></article>
+        <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot; se estima un rango de calorías y sustituye a la comida planificada (fase 3).</p><span class="src manual">Bot de Telegram</span></article>
+        <article class="datum reveal"><h3>Comidas del plan</h3><p>Se escribirán solas en Google Health cada noche, sin meterlas a mano (fase 3).</p><span class="src auto">Automático</span></article>
       </div>
       <div class="card coverage reveal">
         <h3>Diseñado para días incompletos</h3>
@@ -249,7 +250,7 @@
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
           <h3>IA en modalidad de pago</h3>
-          <p>La API de Gemini se usa con facturación activa, cuyas condiciones impiden usar los datos para entrenar modelos.</p>
+          <p>La API de Gemini se usa con facturación activa, cuyas condiciones impiden usar los datos para entrenar modelos. Además, solo recibe calorías, macros y preferencias: nunca mi peso.</p>
         </article>
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
@@ -265,7 +266,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2 class="big">Hoja de ruta</h2>
-        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance (última actualización: 13 de octubre de 2026).</p>
+        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance (última actualización: 14 de octubre de 2026).</p>
       </div>
       <ol class="road" id="road">
         <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
@@ -282,31 +283,37 @@
             <li class="done">Código publicado en GitHub</li>
           </ul>
         </div></li>
-        <li class="now reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 1. Producto mínimo</h3><span class="state"><span class="pulse" aria-hidden="true"></span>En curso</span></div>
+        <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
+          <div class="road-head"><h3>Fase 1. Producto mínimo</h3><span class="state">Completada</span></div>
           <p>Que el ciclo semanal funcione de punta a punta: datos, peso, calorías, menú e impresión.</p>
           <ul class="tasks">
             <li class="done">Base de datos SQLite: cada dato de la API en bruto, sin duplicados, y tablas limpias por día, noche y entrenamiento</li>
             <li class="done">Sincronización automática cada 4 horas, releyendo los últimos 3 días</li>
             <li class="done">Avisos por Telegram si una sincronización falla</li>
-            <li class="done">Bot de Telegram: peso, medidas y % de grasa, con los comandos en el menú</li>
+            <li class="done">Bot de Telegram: peso, medidas y % de grasa, menú del día y lista de la compra</li>
             <li class="done">Recordatorio de pesaje que se adapta a cuándo puedo pesarme</li>
-            <li>Cálculo de calorías y macros con todos los límites</li>
-            <li>Menú semanal generado por la IA y validado</li>
-            <li>PDF con el menú impreso cada domingo</li>
+            <li class="done">Cálculo de calorías y macros con todos los límites, para una semana de martes a lunes</li>
+            <li class="done">Menú semanal: la IA busca productos de temporada y lo monta; la Pi lo revisa gramo a gramo y le devuelve los errores</li>
+            <li class="done">PDF con el menú y la lista de la compra, impreso cada lunes</li>
+          </ul>
+        </div></li>
+        <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
+          <div class="road-head"><h3>Fase 2. Bucle de entrenamiento</h3><span class="state">Completada</span></div>
+          <p>Una rutina que se adapta sola a lo que levanto, a cómo me recupero y, con el tiempo, a lo que necesito cambiar.</p>
+          <ul class="tasks">
+            <li class="done">Rutina por bloques de 12 semanas: 4 días, 5-6 ejercicios y como mucho 60 minutos por sesión</li>
+            <li class="done">Hoja de Google Sheets con una fila por serie y las alternativas por si la máquina está ocupada, leída cada 4 horas</li>
+            <li class="done">Kilos de cada semana con doble progresión, ajustados por la recuperación (HRV y sueño), con descargas y bajadas por dolor</li>
+            <li class="done">Cambios de ejercicios propuestos por la IA y revisados contra las limitaciones de rodilla y hombro</li>
           </ul>
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 2. Bucle de entrenamiento</h3><span class="state">Pendiente</span></div>
-          <p>Catálogo de ejercicios con sustitutos, rutina volcada a Google Sheets con una fila por serie, lectura de lo que levanto y progresión automática según la recuperación.</p>
-        </div></li>
-        <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 3. Nutrición automática</h3><span class="state">Pendiente</span></div>
+          <div class="road-head"><h3>Fase 3. Nutrición automática</h3><span class="state">Siguiente</span></div>
           <p>Registro nocturno de las comidas en Google Health, fotos de comidas fuera de casa con estimación por rango y resumen mensual de lo consumido.</p>
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
           <div class="road-head"><h3>Fase 4. Robustez</h3><span class="state">Pendiente</span></div>
-          <p>Guía de reinstalación probada, gráficas de tendencia en el PDF, pausas de dieta y semanas de descarga automáticas, y revisión trimestral de las reglas.</p>
+          <p>Guía de reinstalación probada, gráficas de tendencia en el PDF y revisión trimestral de las reglas.</p>
         </div></li>
       </ol>
     </div>
