@@ -61,7 +61,7 @@
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="status-row fade-in">
-        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción: fases 0 a 2 listas, la 3 en camino</span>
+        <span class="badge build"><span class="pulse" aria-hidden="true"></span>En construcción: fases 0 a 3 listas, la 4 en camino</span>
         <span class="badge personal">Proyecto personal de Jesús Tirado</span>
         <a class="badge personal" href="https://github.com/ChechuT10/health-sync">Código abierto en GitHub, licencia MIT</a>
       </div>
@@ -143,7 +143,7 @@
         <li class="reveal det"><h3>Cálculo determinista</h3><p>Calcula el gasto real a partir de la tendencia del peso y lo que como, fija calorías y macros, y decide los kilos de cada ejercicio con doble progresión según lo que levanté, el sueño y la HRV.</p><span class="where">Código con límites fijos</span></li>
         <li class="reveal ai"><h3>La IA propone</h3><p>Con esos números ya cerrados, Gemini busca productos de temporada en mis supermercados y monta el menú de la semana en un JSON estricto. Cada 12 semanas, o si me estanco, propone qué ejercicios cambiar.</p><span class="where">API de Gemini</span></li>
         <li class="reveal det"><h3>Validación</h3><p>La Pi suma gramo a gramo cada día del menú (±5 %), comprueba que no aparece nada que no como y que cada ejercicio respeta mis lesiones y los 60 minutos. Si algo falla, le devuelve los errores a la IA para que corrija; si sigue mal, repite el plan anterior y me avisa.</p><span class="where">Código con límites fijos</span></li>
-        <li class="reveal"><h3>Entrega</h3><p>El lunes imprime el menú con gramos y la lista de la compra, crea la pestaña de la semana en Google Sheets para anotar las series y lo manda todo por Telegram. Pronto, cada noche registrará las comidas en Google Health.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
+        <li class="reveal"><h3>Entrega</h3><p>El lunes imprime el menú con gramos y la lista de la compra, crea la pestaña de la semana en Google Sheets para anotar las series y lo manda todo por Telegram. Cada noche registra en Google Health lo que he comido.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
       </ol>
 
       <div class="card diagram-card reveal">
@@ -167,7 +167,7 @@
             <g class="node hub"><rect x="470" y="124" width="200" height="86" rx="16"/><text class="t" x="490" y="156">Raspberry Pi</text><text class="s" x="490" y="176">SQLite, reglas y</text><text class="s" x="490" y="192">tareas programadas</text></g>
             <g class="node ai"><rect x="470" y="10" width="200" height="64" rx="14"/><text class="t" x="490" y="37">API de Gemini</text><text class="s" x="490" y="57">Menú, compra y rutina</text></g>
             <g class="node"><rect x="730" y="28" width="210" height="64" rx="14"/><text class="t" x="748" y="55">Impresora</text><text class="s" x="748" y="75">Menú semanal en PDF</text></g>
-            <g class="node"><rect x="730" y="137" width="210" height="64" rx="14"/><text class="t" x="748" y="164">Bot de Telegram</text><text class="s" x="748" y="184">Peso, menú del día y avisos</text></g>
+            <g class="node"><rect x="730" y="137" width="210" height="64" rx="14"/><text class="t" x="748" y="164">Bot de Telegram</text><text class="s" x="748" y="184">Peso, fotos de comidas y avisos</text></g>
             <g class="node"><rect x="730" y="246" width="210" height="64" rx="14"/><text class="t" x="748" y="273">Google Sheets</text><text class="s" x="748" y="293">Series, kilos y repeticiones</text></g>
           </svg>
         </div>
@@ -220,8 +220,8 @@
         <article class="datum reveal"><h3>Entrenamientos</h3><p>Duración y frecuencia cardíaca de cada sesión registrada en el reloj.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Peso y medidas</h3><p>Con /peso y /medidas en el bot. El % de grasa sale del método de la Marina de EE. UU. y se guarda también en Google Health.</p><span class="src manual">Bot de Telegram</span></article>
         <article class="datum reveal"><h3>Series y cargas</h3><p>Kilos, repeticiones y esfuerzo de cada serie, que alimentan la sobrecarga progresiva.</p><span class="src manual">Google Sheets</span></article>
-        <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot; se estima un rango de calorías y sustituye a la comida planificada (fase 3).</p><span class="src manual">Bot de Telegram</span></article>
-        <article class="datum reveal"><h3>Comidas del plan</h3><p>Se escribirán solas en Google Health cada noche, sin meterlas a mano (fase 3).</p><span class="src auto">Automático</span></article>
+        <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot: la IA desglosa el plato con un rango de calorías, puedo corregir las cantidades y sustituye a la comida planificada.</p><span class="src manual">Bot de Telegram</span></article>
+        <article class="datum reveal"><h3>Comidas del plan</h3><p>Se escriben solas en Google Health cada noche, sin meterlas a mano, salvo las que me salte.</p><span class="src auto">Automático</span></article>
       </div>
       <div class="card coverage reveal">
         <h3>Diseñado para días incompletos</h3>
@@ -307,12 +307,18 @@
             <li class="done">Cambios de ejercicios propuestos por la IA y revisados contra las limitaciones de rodilla y hombro</li>
           </ul>
         </div></li>
-        <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 3. Nutrición automática</h3><span class="state">Siguiente</span></div>
-          <p>Registro nocturno de las comidas en Google Health, fotos de comidas fuera de casa con estimación por rango y resumen mensual de lo consumido.</p>
+        <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
+          <div class="road-head"><h3>Fase 3. Nutrición automática</h3><span class="state">Completada</span></div>
+          <p>Que lo que como de verdad quede registrado sin esfuerzo, también fuera de casa.</p>
+          <ul class="tasks">
+            <li class="done">Comidas del menú escritas cada noche en Google Health, salvo las que me salto</li>
+            <li class="done">Fotos de comidas fuera de casa: la IA desglosa el plato con un rango y puedo corregir las cantidades con una frase</li>
+            <li class="done">Ajuste del sesgo de las fotos, medido comparando modelos y formas de preguntar con comidas reales</li>
+            <li class="done">Resumen mensual de lo comido y gasto real calculado con lo que como de verdad</li>
+          </ul>
         </div></li>
         <li class="reveal"><span class="dot" aria-hidden="true"></span><div class="card">
-          <div class="road-head"><h3>Fase 4. Robustez</h3><span class="state">Pendiente</span></div>
+          <div class="road-head"><h3>Fase 4. Robustez</h3><span class="state">Siguiente</span></div>
           <p>Guía de reinstalación probada, gráficas de tendencia en el PDF y revisión trimestral de las reglas.</p>
         </div></li>
       </ol>
