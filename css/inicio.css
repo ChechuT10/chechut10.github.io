@@ -308,6 +308,7 @@ kbd {
 .org .client { color: var(--conv-ink); }
 .period { margin: 0; text-align: right; color: var(--ink-3); font-size: .9rem; font-variant-numeric: tabular-nums; }
 .period .dur { display: block; color: var(--ink-2); }
+.period .dur .paren { display: none; }
 .badge-now {
   display: inline-flex; align-items: center; gap: 8px; margin: 0 0 6px;
   padding: 2px 10px 2px 9px; border-radius: 999px;
@@ -521,71 +522,264 @@ dialog::backdrop { background: rgba(8, 12, 24, .45); backdrop-filter: blur(3px);
   .nav .cmd-btn { width: 38px; padding: 0; justify-content: center; }
 }
 
-/* ===================== Impresión (A4) ===================== */
-@page { size: A4; margin: 12mm; }
+/* ===================== Impresión (A4 - Formato ATS) ===================== */
+@page { size: A4; margin: 12mm 14mm; }
 @media print {
   :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
-    --bg: #fff; --surface: #fff; --surface-2: #F2F4F8; --ink: #10182B; --ink-2: #3C475E; --ink-3: #6B7589;
-    --rule: #D9DFEA; --signal: #3355FF; --signal-ink: #2443E0; --conv: #E8962E; --conv-ink: #9C5C08; --edu: #0E9384;
-    --signal-soft: rgba(51,85,255,.1); color-scheme: light;
+    --bg: #fff; --surface: #fff; --surface-2: #fff;
+    --ink: #000; --ink-2: #222; --ink-3: #444;
+    --rule: #ccc; --signal: #000; --signal-ink: #000;
+    --conv: #000; --conv-ink: #222; --edu: #000;
+    --signal-soft: transparent; color-scheme: light;
   }
-  body { font-size: 9.6pt; line-height: 1.45; background: #fff; overflow: visible; }
+  body {
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 9.8pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+    overflow: visible;
+  }
   .wrap { max-width: none; padding: 0; }
-  .nav, .pipeline, .ctas, .hello, .now, .sql, .skill-panel, .diagram-scroll, .scroll-hint, .contact, footer, .toast, dialog, .headline, .section-intro, .job-dot, .chip .n, .project .btn, .lane-label, .tip { display: none !important; }
+
+  /* Ocultar navegación, elementos interactivos, gráficos y proyecto personal */
+  .nav, .pipeline, .ctas, .hello, .now, .sql, .skill-panel,
+  #trayectoria, #proyecto, .contact, footer, .toast, dialog,
+  .headline, .section-intro, .job-dot, .chip .n, .badge-now {
+    display: none !important;
+  }
+
   .print-only { display: block; }
-  .reveal, .motion .reveal { opacity: 1 !important; transform: none !important; }
-  .motion .gantt .bar, .bar { transform: none !important; transition: none !important; }
-  *, *::before, *::after { animation: none !important; box-shadow: none !important; }
-  .motion .fade-in { opacity: 1 !important; }
+  .reveal, .motion .reveal, .motion .fade-in { opacity: 1 !important; transform: none !important; }
+  *, *::before, *::after { animation: none !important; box-shadow: none !important; transition: none !important; }
+  a { color: #000; text-decoration: none; }
+
+  /* Cabecera lineal ATS */
   .hero { padding: 0; overflow: visible; }
   .hero::before, .hero::after { display: none; }
-  .print-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
-  .print-head h1 { margin: 0; font-family: var(--display); font-size: 24pt; line-height: 1; letter-spacing: -0.03em; }
-  .print-head .role { margin: 4px 0 0; font-size: 11pt; color: var(--ink-2); font-weight: 600; }
-  .print-head ul { margin: 0; padding: 0; list-style: none; text-align: right; font-size: 8.6pt; color: var(--ink-2); }
-  .lede { font-size: 10pt; margin: 10px 0 0; max-width: none; }
-  .section { padding: 14px 0 0; }
-  .section-head { display: block; margin-bottom: 8px; }
-  .section h2 { font-size: 13pt; letter-spacing: -0.01em; border-bottom: 1px solid var(--rule); padding-bottom: 3px; }
-  .gantt { padding: 4px 0 0; border: 0; }
-  .gantt-legend { margin-bottom: 6px; font-size: 8pt; }
-  .lane { height: 22px; margin-bottom: 6px; }
-  .today { top: 8px; }
-  .bar { top: 2px; bottom: 2px; font-size: 7pt; padding: 0 5px; border-radius: 4px; }
-  .bar, .gantt-legend li::before, .today::before, .tags li, .chip, .status::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-head {
+    display: block;
+    border-bottom: 1.5pt solid #000;
+    padding-bottom: 6pt;
+    margin-bottom: 8pt;
+  }
+  .print-head h1 {
+    margin: 0;
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0;
+    color: #000;
+  }
+  .print-head .role {
+    margin: 2pt 0 0;
+    font-size: 11pt;
+    font-weight: 600;
+    color: #222;
+  }
+  .print-head ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 4pt 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    font-size: 9.2pt;
+    color: #222;
+  }
+  .print-head ul li + li::before {
+    content: " | ";
+    padding: 0 4pt;
+    color: #444;
+  }
+  .lede {
+    font-size: 9.8pt;
+    margin: 0;
+    max-width: none;
+    color: #111;
+  }
+
+  /* Títulos de sección estándar para ATS */
+  .section { padding: 11pt 0 0; }
+  .section-head { display: block; margin-bottom: 6pt; }
+  .section h2 {
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1pt solid #000;
+    padding-bottom: 2pt;
+    color: #000;
+  }
+
+  /* Experiencia profesional en 1 sola columna */
   .jobs { padding-left: 0; }
   .jobs::before, .jobs::after { display: none; }
-  .job { padding: 0 0 8px; break-inside: avoid; }
-  .job-card { padding: 0; border: 0; }
-  .job h3 { font-size: 11pt; }
-  .badge-now { display: none; }
-  .org, .period { font-size: 9pt; }
-  .achievements { margin-top: 4px; }
-  .achievements li + li { margin-top: 2px; }
-  .tags { margin-top: 5px; gap: 4px; }
-  .tags li { font-size: 7.5pt; padding: 1px 7px; }
-  .before-title { margin: 6px 0 4px; font-size: 10.5pt; }
-  .before { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .mini { padding: 0; border: 0; break-inside: avoid; }
-  .mini h4 { font-size: 9.5pt; }
-  .mini p, .mini .when { margin-top: 2px; font-size: 8.5pt; }
+  .job { padding: 0 0 8pt; break-inside: avoid; }
+  .job:last-child { padding-bottom: 4pt; }
+  .job-card { padding: 0; border: 0; border-radius: 0; background: transparent; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8pt; }
+  .job h3 {
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #000;
+  }
+  .org { margin: 1pt 0 0; font-size: 9.5pt; font-weight: 600; color: #222; }
+  .org .client { color: #222; font-weight: 600; }
+  .period { font-size: 9pt; color: #222; text-align: right; white-space: nowrap; }
+  .period .dur { display: inline; color: #444; }
+  .period .dur .paren { display: inline; }
+  .achievements {
+    margin: 3pt 0 0;
+    padding-left: 14pt;
+    list-style: disc;
+    color: #111;
+  }
+  .achievements li { padding-left: 0; max-width: none; }
+  .achievements li + li { margin-top: 1.5pt; }
+  .achievements li::before { display: none; }
+
+  /* Herramientas por puesto como texto plano separado por comas */
+  .tags {
+    display: block;
+    margin: 3pt 0 0;
+    padding: 0;
+    font-size: 8.8pt;
+    color: #222;
+  }
+  .tags::before {
+    content: "Herramientas: ";
+    font-weight: 700;
+    color: #000;
+  }
+  .tags li {
+    display: inline;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #222;
+    font-size: 8.8pt;
+    font-weight: 400;
+  }
+  .tags li:not(:last-child)::after { content: ", "; }
+
+  /* Experiencia previa (Antes de AdTech) lineal en 1 sola columna */
+  .before-title {
+    margin: 6pt 0 3pt;
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #000;
+  }
+  .before { display: block; }
+  .mini {
+    padding: 0;
+    margin-bottom: 4pt;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    break-inside: avoid;
+  }
+  .mini h4 { display: inline; font-size: 9.5pt; font-weight: 700; color: #000; }
+  .mini h4::after { content: " — "; font-weight: 400; }
+  .mini .org { display: inline; font-size: 9.5pt; font-weight: 600; color: #222; }
+  .mini .when { display: inline; margin: 0 0 0 6pt; font-size: 8.8pt; color: #444; }
+  .mini .when::before { content: "("; }
+  .mini .when::after { content: ")"; }
+  .mini p:not(.org):not(.when) { margin: 1pt 0 0; font-size: 9pt; color: #111; }
+
+  /* Stack técnico en formato lineal (Categoría: item1, item2...) */
   .stack { display: block; }
-  .groups { grid-template-columns: repeat(3, 1fr); gap: 8px 16px; }
-  .group h3 { margin-bottom: 4px; font-size: 8.5pt; }
-  .chips { gap: 4px; }
-  .chip { padding: 1px 7px; font-size: 8pt; border-radius: 5px; }
-  .chip[aria-pressed="true"] { background: var(--surface); color: var(--ink); border-color: var(--rule); }
-  .project { border: 0; border-radius: 0; break-inside: avoid; }
-  .project-text { padding: 0; display: block; }
-  .project-text h3 { font-size: 11pt; display: inline; }
-  .status { margin: 0 0 0 8px; font-size: 8.5pt; }
-  .project-text p { margin-top: 4px; }
-  .edu-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .edu-card, .extras section { padding: 0; border: 0; break-inside: avoid; }
-  .edu-card h3 { font-size: 9.5pt; margin-top: 2px; }
-  .edu-card p, .edu-card .yrs { font-size: 8.5pt; }
-  .extras { margin-top: 8px; gap: 16px; }
-  .extras h3 { font-size: 10pt; margin-bottom: 2px; }
-  .extras li { padding: 2px 0; border: 0; font-size: 8.6pt; }
-  a { color: var(--ink); text-decoration: none; }
+  .groups { display: block; }
+  .group { margin-bottom: 3pt; break-inside: avoid; }
+  .group h3 {
+    display: inline;
+    margin: 0;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #000;
+  }
+  .group h3::after { content: ": "; }
+  .chips { display: inline; }
+  .chip, .chip[aria-pressed="true"] {
+    display: inline;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #111;
+    font-size: 9.5pt;
+    font-weight: 400;
+  }
+  .chip:not(:last-child)::after { content: ", "; }
+
+  /* Formación, Certificaciones e Idiomas en 1 sola columna */
+  .edu-grid { display: block; }
+  .edu-card {
+    padding: 0;
+    margin-bottom: 5pt;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    break-inside: avoid;
+  }
+  .edu-card h3 {
+    display: inline;
+    margin: 0;
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #000;
+  }
+  .edu-card h3::after { content: " — "; font-weight: 400; }
+  .edu-card p {
+    display: inline;
+    margin: 0;
+    font-size: 9.5pt;
+    color: #222;
+  }
+  .edu-card .yrs {
+    float: right;
+    font-family: Arial, Helvetica, system-ui, sans-serif;
+    font-size: 9pt;
+    font-weight: 400;
+    color: #222;
+  }
+
+  .extras {
+    display: block;
+    margin-top: 6pt;
+  }
+  .extras section {
+    padding: 0;
+    margin-bottom: 4pt;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    break-inside: avoid;
+  }
+  .extras h3 {
+    display: inline;
+    margin: 0;
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #000;
+  }
+  .extras h3::after { content: ": "; }
+  .extras ul { display: inline; }
+  .extras li {
+    display: inline;
+    padding: 0;
+    border: 0;
+    font-size: 9.5pt;
+    color: #111;
+  }
+  .extras li:not(:last-child)::after { content: " · "; }
+  #langs li span:last-child { color: #333; }
+  #langs li span:last-child::before { content: "("; }
+  #langs li span:last-child::after { content: ")"; }
 }

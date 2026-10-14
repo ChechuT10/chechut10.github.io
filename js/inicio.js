@@ -45,8 +45,10 @@
     <li><a href="tel:${esc(c.telefono.replace(/\s/g, ''))}">${esc(c.telefono)}</a></li>
     <li><span>${esc(data.ubicacion)}</span></li>`;
   $('#print-contact').innerHTML = `
-    <li>${esc(c.email)}</li><li>${esc(c.telefono)}</li>
-    <li>${esc(c.linkedin.replace('https://www.', ''))}</li><li>${esc(data.ubicacion)}</li>`;
+    <li>${esc(data.ubicacion)}</li>
+    <li><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></li>
+    <li>${esc(c.telefono)}</li>
+    <li><a href="${esc(c.linkedin)}">${esc(c.linkedin.replace(/^https?:\/\/(www\.)?/, ''))}</a></li>`;
 
   /* ---------- Trayectoria (Gantt) ---------- */
   (function gantt() {
@@ -139,7 +141,7 @@
               <h3>${esc(j.puesto)}</h3>
               <p class="org">${esc(j.empresa)}, ${esc(j.lugar)}${j.cliente ? `. <span class="client">Cuenta de ${esc(j.cliente)}</span>` : ''}</p>
             </div>
-            <p class="period">${badge}<span>${fmt(j.inicio)} – ${fmt(j.fin)}</span><span class="dur">${dur(span(j.inicio, j.fin))}</span></p>
+            <p class="period">${badge}<span>${fmt(j.inicio)} – ${fmt(j.fin)}</span> <span class="dur"><span class="paren">(</span>${dur(span(j.inicio, j.fin))}<span class="paren">)</span></span></p>
           </header>
           <ul class="achievements">${j.logros.map(l => `<li>${esc(l)}</li>`).join('')}</ul>
           <ul class="tags" aria-label="Herramientas">${j.herramientas.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
@@ -239,7 +241,7 @@
         <p>${esc(f.centro)}</p>
       </article>`).join('');
     $('#certs').innerHTML = data.certificaciones.map(x => `<li><span>${esc(x)}</span></li>`).join('');
-    $('#langs').innerHTML = data.idiomas.map(x => `<li><span>${esc(x.idioma)}</span><span>${esc(x.nivel)}</span></li>`).join('');
+    $('#langs').innerHTML = data.idiomas.map(x => `<li><span>${esc(x.idioma)}</span> <span>${esc(x.nivel)}</span></li>`).join('');
   })();
 
   /* ---------- Animación del pipeline (canvas) ---------- */
