@@ -52,15 +52,15 @@ button { font: inherit; color: inherit; }
 /* Nav */
 .nav { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: saturate(160%) blur(12px); -webkit-backdrop-filter: saturate(160%) blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
 .nav.scrolled { border-bottom-color: var(--rule); }
-.nav-inner { display: flex; align-items: center; gap: 16px; height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+.nav-inner { display: flex; align-items: center; gap: 12px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
 .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--health); }
 .brand-mark svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.nav-links { display: flex; gap: 4px; margin: 0 auto 0 16px; padding: 0; list-style: none; }
-.nav-links a { display: block; padding: 6px 12px; border-radius: 8px; color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: .95rem; }
+.nav-links { display: flex; gap: 2px; margin: 0 auto 0 8px; padding: 0; list-style: none; }
+.nav-links a { display: block; padding: 6px 9px; white-space: nowrap; border-radius: 8px; color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: .95rem; }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); background: var(--surface-2); }
-.nav-tools { display: flex; gap: 8px; margin-left: auto; }
-.pill-btn, .icon-btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); font-size: .9rem; font-weight: 500; text-decoration: none; cursor: pointer; }
+.nav-tools { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
+.pill-btn, .icon-btn { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); font-size: .9rem; font-weight: 500; text-decoration: none; cursor: pointer; }
 .icon-btn { width: 38px; padding: 0; justify-content: center; }
 .pill-btn:hover, .icon-btn:hover { color: var(--ink); border-color: var(--ink-3); }
 .pill-btn svg, .icon-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -260,6 +260,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 footer a { color: var(--ink-2); }
 
+/* Entre el móvil y el ancho completo, los botones de la barra solo con icono para que quepan los enlaces */
+@media screen and (max-width: 1100px) {
+  .nav-tools .pill-btn .label { display: none; }
+}
 @media screen and (max-width: 900px) {
   .nav-links { display: none; }
   .section-head, .fix, .guard { grid-template-columns: 1fr; }
