@@ -245,6 +245,12 @@ a.badge.personal:hover { border-color: var(--ink-3); color: var(--ink); }
 /* Stack y cierre */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .tags li { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); font-size: .92rem; font-weight: 500; }
+.replica { margin-top: 40px; padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.replica h3 { margin: 0 0 6px; }
+.replica p { margin: 0; max-width: 62ch; color: var(--ink-2); }
+.replica-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill-btn.primary { background: var(--health-soft); border-color: var(--health); color: var(--health-ink); font-weight: 600; }
+.pill-btn.primary:hover { color: var(--health-ink); border-color: var(--health-ink); }
 .disclaimer { margin: 104px 0 0; padding: 28px; border-radius: 20px; background: var(--surface-2); color: var(--ink-2); }
 .disclaimer h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--ink); }
 .disclaimer p { margin: 0; max-width: 80ch; }
