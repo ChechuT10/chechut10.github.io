@@ -141,9 +141,9 @@
         <li class="reveal"><h3>Ingesta</h3><p>Cada 4 horas descarga de la Google Health API pasos, sueño con fases, frecuencia cardíaca, HRV, SpO2, entrenamientos y peso. Sin duplicados y respetando los límites de la API.</p><span class="where">Raspberry Pi</span></li>
         <li class="reveal"><h3>Normalización</h3><p>Guarda el dato en bruto y una versión limpia por día en SQLite. Distingue días completos, días sin reloj por la noche y días con solo el móvil.</p><span class="where">Raspberry Pi, SQLite</span></li>
         <li class="reveal det"><h3>Cálculo determinista</h3><p>Calcula el gasto real a partir de la tendencia del peso y lo que como, fija calorías y macros, y decide los kilos de cada ejercicio con doble progresión según lo que levanté, el sueño y la HRV.</p><span class="where">Código con límites fijos</span></li>
-        <li class="reveal ai"><h3>La IA propone</h3><p>Con esos números ya cerrados, Gemini busca productos de temporada en mis supermercados y monta el menú de la semana en un JSON estricto. Cada 12 semanas, o si me estanco, propone qué ejercicios cambiar.</p><span class="where">API de Gemini</span></li>
-        <li class="reveal det"><h3>Validación</h3><p>La Pi suma gramo a gramo cada día del menú (±5 %), comprueba que no aparece nada que no como y que cada ejercicio respeta mis lesiones y los 60 minutos. Si algo falla, le devuelve los errores a la IA para que corrija; si sigue mal, repite el plan anterior y me avisa.</p><span class="where">Código con límites fijos</span></li>
-        <li class="reveal"><h3>Entrega</h3><p>El lunes imprime el menú con gramos y la lista de la compra, crea la pestaña de la semana en Google Sheets para anotar las series y lo manda todo por Telegram. Cada noche registra en Google Health lo que he comido.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
+        <li class="reveal ai"><h3>La IA propone</h3><p>Con esos números ya cerrados, Gemini busca productos de temporada en mis supermercados y monta el menú de la semana en un JSON estricto. Después de cada entreno valora la sesión cruzando lo que apunté con lo que registró el reloj, y cada lunes usa esas valoraciones para ajustar la rutina de la semana: series, ejercicios y descansos. Cada 12 semanas, o si me estanco, propone qué ejercicios cambiar.</p><span class="where">API de Gemini</span></li>
+        <li class="reveal det"><h3>Validación</h3><p>La Pi suma gramo a gramo cada día del menú (±5 %), comprueba que no aparece nada que no como, que cada ejercicio respeta mis lesiones y los 60 minutos, y que el ajuste semanal no cambia más de tres cosas a la vez. Si algo falla, le devuelve los errores a la IA para que corrija; si sigue mal, repite el plan anterior y me avisa.</p><span class="where">Código con límites fijos</span></li>
+        <li class="reveal"><h3>Entrega</h3><p>El lunes imprime el menú con gramos y la lista de la compra, crea la pestaña de la semana en Google Sheets para anotar las series y me manda por Telegram el balance de la semana: qué hice bien, qué mejorar y qué ha cambiado en la rutina. Cada noche registra en Google Health lo que he comido.</p><span class="where">Impresora, Google Sheets, Telegram</span></li>
       </ol>
 
       <div class="card diagram-card reveal">
@@ -165,7 +165,7 @@
             <g class="node"><rect x="20" y="133" width="160" height="64" rx="14"/><text class="t" x="38" y="160">Pixel Watch y móvil</text><text class="s" x="38" y="180">Actividad, sueño, HRV</text></g>
             <g class="node"><rect x="230" y="133" width="180" height="64" rx="14"/><text class="t" x="248" y="160">Google Health API</text><text class="s" x="248" y="180">Lee datos, escribe comidas</text></g>
             <g class="node hub"><rect x="470" y="124" width="200" height="86" rx="16"/><text class="t" x="490" y="156">Raspberry Pi</text><text class="s" x="490" y="176">SQLite, reglas y</text><text class="s" x="490" y="192">tareas programadas</text></g>
-            <g class="node ai"><rect x="470" y="10" width="200" height="64" rx="14"/><text class="t" x="490" y="37">API de Gemini</text><text class="s" x="490" y="57">Menú, compra y rutina</text></g>
+            <g class="node ai"><rect x="470" y="10" width="200" height="64" rx="14"/><text class="t" x="490" y="37">API de Gemini</text><text class="s" x="490" y="57">Menú, rutina y análisis</text></g>
             <g class="node"><rect x="730" y="28" width="210" height="64" rx="14"/><text class="t" x="748" y="55">Impresora</text><text class="s" x="748" y="75">Menú semanal en PDF</text></g>
             <g class="node"><rect x="730" y="137" width="210" height="64" rx="14"/><text class="t" x="748" y="164">Bot de Telegram</text><text class="s" x="748" y="184">Peso, fotos de comidas y avisos</text></g>
             <g class="node"><rect x="730" y="246" width="210" height="64" rx="14"/><text class="t" x="748" y="273">Google Sheets</text><text class="s" x="748" y="293">Series, kilos y repeticiones</text></g>
@@ -217,7 +217,7 @@
         <article class="datum reveal"><h3>Sueño</h3><p>Duración y fases de cada noche, para medir la recuperación.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>HRV y pulso en reposo</h3><p>Comparados con mi propia media de 60 días, no con valores genéricos.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Pasos y actividad</h3><p>El móvil va siempre conmigo, así que este dato nunca falta.</p><span class="src auto">Automático</span></article>
-        <article class="datum reveal"><h3>Entrenamientos</h3><p>Duración y frecuencia cardíaca de cada sesión registrada en el reloj.</p><span class="src auto">Automático</span></article>
+        <article class="datum reveal"><h3>Entrenamientos</h3><p>Duración, frecuencia cardíaca y zonas de cada sesión del reloj, que se cruzan con lo que apunto para valorar el entreno.</p><span class="src auto">Automático</span></article>
         <article class="datum reveal"><h3>Peso y medidas</h3><p>Con /peso y /medidas en el bot. El % de grasa sale del método de la Marina de EE. UU. y se guarda también en Google Health.</p><span class="src manual">Bot de Telegram</span></article>
         <article class="datum reveal"><h3>Series y cargas</h3><p>Kilos, repeticiones y esfuerzo de cada serie, que alimentan la sobrecarga progresiva.</p><span class="src manual">Google Sheets</span></article>
         <article class="datum reveal"><h3>Comidas fuera</h3><p>Una foto al bot: la IA desglosa el plato con un rango de calorías, puedo corregir las cantidades y sustituye a la comida planificada.</p><span class="src manual">Bot de Telegram</span></article>
@@ -250,7 +250,7 @@
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
           <h3>IA en modalidad de pago</h3>
-          <p>La API de Gemini se usa con facturación activa, cuyas condiciones impiden usar los datos para entrenar modelos. Además, solo recibe calorías, macros y preferencias: nunca mi peso.</p>
+          <p>La API de Gemini se usa con facturación activa, cuyas condiciones impiden usar los datos para entrenar modelos. Además, solo recibe lo que necesita cada tarea: calorías, macros y preferencias para el menú; series, pulso y sueño para el gimnasio; y las fotos de comidas que yo le mando. Nunca mi peso ni mi porcentaje de grasa.</p>
         </article>
         <article class="card reveal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
@@ -266,7 +266,7 @@
     <div class="wrap">
       <div class="section-head reveal">
         <h2 class="big">Hoja de ruta</h2>
-        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance (última actualización: 14 de octubre de 2026).</p>
+        <p class="section-intro">Primero un producto mínimo que funcione de punta a punta, y después cada pieza por separado. Esta página se irá actualizando según avance (última actualización: 16 de octubre de 2026).</p>
       </div>
       <ol class="road" id="road">
         <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
@@ -305,6 +305,8 @@
             <li class="done">Hoja de Google Sheets con una fila por serie y las alternativas por si la máquina está ocupada, leída cada 4 horas</li>
             <li class="done">Kilos de cada semana con doble progresión, ajustados por la recuperación (HRV y sueño), con descargas y bajadas por dolor</li>
             <li class="done">Cambios de ejercicios propuestos por la IA y revisados contra las limitaciones de rodilla y hombro</li>
+            <li class="done">Valoración de cada sesión por la IA: lo que apunto en la hoja y lo que registra el reloj (duración, pulso, descansos), con avisos calculados por el código</li>
+            <li class="done">Ajuste semanal: cada lunes la IA usa esas valoraciones para cambiar la rutina solo para esa semana, con un tope de cambios, y me manda el balance por Telegram</li>
           </ul>
         </div></li>
         <li class="done-phase reveal"><span class="dot" aria-hidden="true"></span><div class="card">
